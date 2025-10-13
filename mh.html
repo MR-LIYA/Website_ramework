@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=2.0,minimum-scale=1.0,user-scalable=no">
+    <title>name</title>
+    <link rel="icon" type="image/x-icon" href="url/image.jpg/png">
+    <!-- Common style -->
+    <link rel="stylesheet" href="/.script/common.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/.script/bootstrap.min.css">
+</head>
+<body>
+    <!-- Content area (distinctive part) -->
+    <div class="content-wrapper">
+        <div class="link-grid first-row" id="firstRow"></div>
+        <div class="link-grid" id="otherRows"></div>
+    </div>
+
+    <!-- Common script -->
+    <script src="/.script/common.js"></script>
+    <script src="/.script/jquery.min.js"></script>
+    <script src="/.script/popper.min.js"></script>
+    <script src="/.script/bootstrap.min.js"></script>
+    <!-- Page-specific script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                setPageTitle('name'); // setting page title
+
+                // First row links to data
+            const firstRowLinks = [
+                { text: "", url: "", target: "_blank" }, //New tab page
+            ];
+
+            // Other row links to data
+            const otherLinks = [
+                //{ text: "", url: "/other/Common/.html" }, //no New tab page
+                // You can add more links…
+            ];
+
+                // Generate link
+                appendLinks(firstRowLinks, 'firstRow');
+                appendLinks(otherLinks, 'otherRows');
+            }, 100);
+        });
+    </script>
+</body>
+</html>
