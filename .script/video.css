@@ -1,0 +1,80 @@
+/* 页面容器样式，使内容垂直居中 */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 100px);
+    /* 减去遮罩的高度 */
+    padding: 20px;
+    margin-top: 100px;
+    /* 添加上边距以防被遮罩 */
+}
+
+/* 视频播放器样式 */
+#videoPlayer {
+    width: 100%;
+    max-width: 1156px;
+    /* 与原视频宽度一致 */
+    height: auto;
+    margin-top: 20px;
+    /* 与上方文字有一定的间隔 */
+}
+
+#videoForm {
+    position: fixed;
+    /* 固定位置 */
+    top: 50px;
+    /* 距离顶部 */
+    left: 0;
+    /* 距离左侧 */
+    width: 100%;
+    /* 宽度为100% */
+    /*background-color: rgba(255, 255, 255, 0.9);*/
+    /* 背景色可选 */
+    z-index: 1000;
+    /* 确保在其他元素之上 */
+    padding: 10px;
+    /* 内边距可选 */
+}
+
+h2 {
+    position: fixed;
+    /* 固定位置 */
+    top: 0;
+    /* 距离顶部 */
+    left: 0;
+    /* 距离左侧 */
+    width: 100%;
+    /* 宽度为100% */
+    /*background-color: rgba(255, 255, 255, 0.9);*/
+    /* 背景色可选 */
+    z-index: 1000;
+    /* 确保在其他元素之上 */
+    padding: 10px;
+    /* 内边距可选 */
+    margin: 0;
+    /* 去掉默认边距 */
+    text-align: center;
+    /* 内容居中 */
+}
+
+.btn-primary {
+    display: block;
+    margin: auto;
+    margin-top: auto;
+}
+
+video {
+    border-radius: 20px;
+    /* 设置圆角 */
+    overflow: hidden;
+    /* 确保内容不超出边界 */
+}
+
+body {
+    background-image: url('/.icon/星见雅1.jpg');
+    /* 'url'部分可以替换为你的 base64 数据 */
+    background-size: cover;
+    background-position: center;
+}
