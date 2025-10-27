@@ -1,4 +1,3 @@
-/* 基础布局样式 */
 header {
     background-color: transparent;
     color: #2089f3;
@@ -44,83 +43,162 @@ nav ul li a {
 
 nav ul li a:hover {
     background-color: #f5f5f5;
+    text-decoration: none;
 }
 
-footer {
-    background-color: transparent;
-    color: #2089f3;
-    text-align: center; /* 水平居中文字 */
-    padding: 10px 0;
+/* 添加遮罩层 */
+body::before {
+    content: "";
+    /* 覆盖整个页面 */
     position: fixed;
-    bottom: env(safe-area-inset-bottom); /* 确保footer在安全区域内 */
-    width: 100%;
-    /* 新增以下样式实现垂直居中 */
-    display: flex;
-    align-items: center; /* 垂直居中 */
-    justify-content: center; /* 水平居中（与text-align配合更稳定） */
-    height: 50px; /* 固定高度，确保垂直居中效果明显 */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* 半透明黑色遮罩（可调整透明度和颜色） */
+    background-color: rgba(255, 255, 255, 0.75);
+    /* 白色75%透明度，适合浅色内容 */
+    /* 确保遮罩在背景图上方、内容下方 */
+    z-index: -1;
 }
 
 body {
     margin: 0;
     padding-top: 120px;
-    padding-bottom: calc(50px + env(safe-area-inset-bottom)); /* 结合系统底部安全区域 */
+    padding-bottom: calc(50px + env(safe-area-inset-bottom));
+    /* 结合系统底部安全区域 */
     background-image: url('/.icon/星见雅.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    /* 关键：让body成为相对定位容器，方便伪元素定位 */
+    position: relative;
+}
+
+footer {
+    background-color: transparent;
+    color: #2089f3;
+    /* 水平居中文字 */
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: env(safe-area-inset-bottom);
+    /* 确保footer在安全区域内 */
+    width: 100%;
+    /* 新增以下样式实现垂直居中 */
+    display: flex;
+    /* 垂直居中 */
+    align-items: center;
+    /* 水平居中（与text-align配合更稳定） */
+    justify-content: center;
+    height: 50px;
+    /* 固定高度，确保垂直居中效果明显 */
 }
 
 .content-wrapper {
     height: calc(100vh - 170px);
     overflow-y: auto;
     padding: 20px;
+    position: relative;
+    z-index: 1;
+    /* 高于遮罩层 */
     /* 隐藏滚动条但保留滚动功能（WebKit浏览器） */
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
 }
 
 .content-wrapper::-webkit-scrollbar {
-    display: none; /*  Chromium浏览器 */
+    display: none;
+    /*  基于Chromium的浏览器 */
 }
+
 /* 链接卡片样式（减小间距） */
 .link-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 5px; /* 卡片间距 */
-    margin: 5px; /* 容器外间距 */
+    gap: 5px;
+    /* 卡片间距 */
+    margin: 5px;
+    /* 容器外间距 */
+    align-items: stretch;
+    /* 让网格项高度统一为行内最高元素的高度 */
+    grid-auto-rows: 1fr;
+    /* 所有行高度相等，自动适应最高内容 */
 }
 
 .link-card {
-    padding: 8px; /* 减小卡片内边距 */
-    transition: all 0.2s cubic-bezier(0.07, 0.7, 0.71, 0.61);
-    /* 新增以下样式实现文字居中 */
-    text-align: center; /* 水平居中 */
-    min-height: 60px; /* 确保卡片有足够高度（可根据需求调整） */
-    display: flex; /* 启用弹性布局 */
-    align-items: center; /* 垂直居中 */
-    justify-content: center; /* 水平居中（与text-align配合更稳定） */
+    padding: 8px;
+    /* 减小卡片内边距 */
+    text-align: center;
+    /* 水平居中 */
+    min-height: auto;
+    /* 确保卡片有足够高度（可根据需求调整） */
+    height: 100%;
+    /* 关键：让卡片高度充满网格单元格 */
+    display: flex;
+    /* 启用弹性布局 */
+    align-items: center;
+    /* 垂直居中 */
+    justify-content: center;
+    /* 水平居中（与text-align配合更稳定） */
+
+    box-sizing: border-box;
+    position: relative;
+    /* 初始无阴影 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
+    /* 统一过渡效果 */
+    /* transition: all 0.3s ease; */
+    transition: all 0.3s linear(0 0%, 0 2.27%, 0.02 4.53%, 0.04 6.8%, 0.06 9.07%, 0.1 11.33%, 0.14 13.6%, 0.25 18.15%, 0.39 22.7%, 0.56 27.25%, 0.77 31.8%, 1 36.35%, 0.89 40.9%, 0.85 43.18%, 0.81 45.45%, 0.79 47.72%, 0.77 50%, 0.75 52.27%, 0.75 54.55%, 0.75 56.82%, 0.77 59.1%, 0.79 61.38%, 0.81 63.65%, 0.85 65.93%, 0.89 68.2%, 1 72.7%, 0.97 74.98%, 0.95 77.25%, 0.94 79.53%, 0.94 81.8%, 0.94 84.08%, 0.95 86.35%, 0.97 88.63%, 1 90.9%, 0.99 93.18%, 0.98 95.45%, 0.99 97.73%, 1 100%);
 }
 
 .link-card:hover {
     background-color: #f5f5f5;
-    border-radius: 4px;
+    border-radius: 12px;
+    /* 稍微增大圆角更柔和 */
+    transform: translateY(-6px);
+    /* 适度上移避免过度 */
+    box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
+    /* 添加阴影增强立体感 */
+    transition: all 0.3s linear(0 0%, 0 2.27%, 0.02 4.53%, 0.04 6.8%, 0.06 9.07%, 0.1 11.33%, 0.14 13.6%, 0.25 18.15%, 0.39 22.7%, 0.56 27.25%, 0.77 31.8%, 1 36.35%, 0.89 40.9%, 0.85 43.18%, 0.81 45.45%, 0.79 47.72%, 0.77 50%, 0.75 52.27%, 0.75 54.55%, 0.75 56.82%, 0.77 59.1%, 0.79 61.38%, 0.81 63.65%, 0.85 65.93%, 0.89 68.2%, 1 72.7%, 0.97 74.98%, 0.95 77.25%, 0.94 79.53%, 0.94 81.8%, 0.94 84.08%, 0.95 86.35%, 0.97 88.63%, 1 90.9%, 0.99 93.18%, 0.98 95.45%, 0.99 97.73%, 1 100%);
+    /* 延长过渡时间使动画更流畅 */
 }
 
+/* 卡片图片样式 */
+.card-image {
+    width: 40px;
+    /* 图片宽度 */
+    height: 40px;
+    /* 图片高度 */
+    margin-right: 8px;
+    /* 图片与文字间距 */
+    object-fit: contain;
+    /* 保持图片比例 */
+    vertical-align: middle;
+}
+
+/* 调整卡片内布局为弹性布局 */
 .link-card a {
+    display: flex;
+    /* 修改为flex布局 */
+    align-items: center;
+    /* 垂直居中 */
+    justify-content: center;
+    /* 水平居中 */
+    /* 保留其他原有样式 */
     color: #2089f3;
     text-decoration: none;
-    display: block;
-    padding: 6px 0; /* 链接内边距 */
+    padding: 6px 0;
     text-align: inherit;
+    height: auto;
 }
 
 .link-card a:hover {
-    color: #004499;
+    color: #2089f3;
     text-decoration: none;
 }
 
 /* 响应式调整 */
 @media (max-width: 1000px) {
+
     /* 移除原flex样式，使用网格列数控制布局 */
     .link-grid {
         grid-template-columns: repeat(4, 1fr);
