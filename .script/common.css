@@ -67,7 +67,7 @@ body {
     padding-top: 120px;
     padding-bottom: calc(50px + env(safe-area-inset-bottom));
     /* 结合系统底部安全区域 */
-    background-image: url('/.icon/星见雅.png');
+    background-image: url('/.icon/PhotoName');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
