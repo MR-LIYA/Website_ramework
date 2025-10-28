@@ -1,4 +1,4 @@
-// 创建链接卡片的函数
+// 创建链接卡片
 function createLinkCard(link) {
     const card = document.createElement('div');
     card.className = 'link-card';
@@ -22,7 +22,7 @@ function createLinkCard(link) {
     return card;
 }
 
-// 使用文档片段批量创建 DOM 元素
+// 批量添加链接
 function appendLinks(links, containerId) {
     const container = document.getElementById(containerId);
     const fragment = document.createDocumentFragment();
