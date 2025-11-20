@@ -1,33 +1,38 @@
-// 创建链接卡片的函数
-function createLinkCard(link) {
-    const card = document.createElement('div');
-    card.className = 'link-card';
+// 页面初始化
+document.addEventListener('DOMContentLoaded', () => {
+	createVideoElement(); // 创建视频背景
+	const router = new Router(); // 初始化路由
 
-    const anchor = document.createElement('a');
-    anchor.href = link.url;
-    anchor.textContent = link.text;
+	function refreshLayout() {
+		// 触发窗口大小变化事件，强制刷新布局
+		window.dispatchEvent(new Event('resize'));
+	}
 
-    if (link.target) {
-        anchor.target = link.target;
-    }
+	// 注册页面路由
+	router.addRoute('home', () => {
+		// 首页链接数据
+		const firstRowLinks = [
+			{
+				text: "工具",
+				url: "#tool"
+			},
+		];
 
-    if (link.url.startsWith('javascript:')) {
-        anchor.onclick = function () {
-            location.href = link.url.replace('javascript:void(0);', '');
-            return false;
-        };
-    }
+		const otherLinks = [
+			{
+				text: "百度",
+				url: "http://www.baidu.com"
+			},
+		];
+		appendLinks(firstRowLinks, 'homeFirstRow');
+		appendLinks(otherLinks, 'homeOtherRows');
+		refreshLayout(); // 添加这一行
+	});
 
-    card.appendChild(anchor);
-    return card;
-}
+	initMouseEffects(); // 初始化鼠标效果
+	adjustContentPadding(); // 初始化内容区调整
+	refreshLayout(); // 初始加载时刷新
 
-// 使用文档片段批量创建 DOM 元素
-function appendLinks(links, containerId) {
-    const container = document.getElementById(containerId);
-    const fragment = document.createDocumentFragment();
-    links.forEach(link => {
-        fragment.appendChild(createLinkCard(link));
-    });
-    container.appendChild(fragment);
-}
+	window.addEventListener('scroll', adjustContentPadding);
+	window.addEventListener('resize', adjustContentPadding);
+});
