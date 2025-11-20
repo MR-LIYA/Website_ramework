@@ -1,47 +1,72 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8" meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=2.0,minimum-scale=1.0,user-scalable=no">
-    <title>name</title>
-    <link rel="icon" type="image/x-icon" href="url">
-    <!-- 共通样式 -->
-    <link rel="stylesheet" href="/.script/common.css">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="/.script/bootstrap.min.css">
-</head>
-<body>
-    <!-- 内容区域（特有部分） -->
-    <div class="content-wrapper">
-        <div class="link-grid first-row" id="firstRow"></div>
-        <div class="link-grid" id="otherRows"></div>
-    </div>
 
-    <!-- 共通脚本 -->
-    <script src="/.script/common.js"></script>
-    <script src="/.script/jquery.min.js"></script>
-    <script src="/.script/popper.min.js"></script>
-    <script src="/.script/bootstrap.min.js"></script>
-    <!-- 页面特有脚本 -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                setPageTitle('name'); // 设置页面标题
-                
-                // 第一行链接数据
-                const firstRowLinks = [
-                    //{ text: "example01", url: "IP address (optional) / Folder where the web page is located / web page.html", target: "_blank" },
-                ];
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+            content="width=device-width,initial-scale=1.0,maximum-scale=2.0,minimum-scale=1.0,user-scalable=no">
+        <title>首页</title>
+        <link rel="icon" type="image/x-icon" href="/.icon/神里凌华.jpg">
+        <!-- 共通样式 -->
+        <link rel="stylesheet" href="/.script/common.css">
+        <link rel="stylesheet" href="/.script/bootstrap.min.css">
+        <!-- 共通脚本 -->
+        <script src="/.script/common.js"></script>
+        <script src="/.script/LinkCard.js"></script>
+        <script src="/.script/jquery.min.js"></script>
+        <script src="/.script/popper.min.js"></script>
+        <script src="/.script/bootstrap.min.js"></script>
+    </head>
 
-                // 其他行链接数据（适配8080端口路径）
-                const otherLinks = [
-                    //{ text: "", url: "" },
-                ];
+    <body>
+        <div id="app">
+            <!-- 导航栏 -->
+            <div class="glass-container">
+                <header>
+                    <h1 id="pageTitle">首页</h1>
+                </header>
 
-                // 生成链接
-                appendLinks(firstRowLinks, 'firstRow');
-                appendLinks(otherLinks, 'otherRows');
-            }, 100);
-        });
-    </script>
-</body>
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="nav-link">首页</a></li>
+                        <li><a href="#ComicStrip" class="nav-link">漫画</a></li>
+                        <li><a href="#about" class="nav-link">关于我们</a></li>
+                        <li><a href="#help" class="nav-link">帮助</a></li>
+                        <li><a href="mailto:1@123.com" class="nav-link">联系邮箱</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- 所有页面容器 -->
+            <div id="pageContainer">
+                <!-- 首页 -->
+                <div class="page active" id="homePage">
+                    <div class="content-wrapper">
+                        <div class="link-grid first-row" id="homeFirstRow"></div>
+                        <div class="link-grid" id="homeOtherRows"></div>
+                    </div>
+                </div>
+
+                <!-- 帮助页 -->
+                <div class="page" id="helpPage">
+                    <div class="content-wrapper">
+                        <p>此页面现已作废。</p>
+                    </div>
+                </div>
+
+                <!-- 关于页 -->
+                <div class="page" id="aboutPage">
+                    <div class="content-wrapper">
+                        <p>网页制作：<b>光 · 影</b></p>
+                    </div>
+                </div>
+
+                <div id="cursor-glow"></div>
+
+                <footer>
+                    <p>© 2023 版权所有</p>
+                </footer>
+            </div>
+    </body>
+
 </html>
