@@ -263,8 +263,8 @@ body::before {
 	transform: translate(-50%, -50%) scale(1.2);
 }
 
-.link-grid.first-row {
-	margin-bottom: 20px;
+.link-grid ~ .link-grid {
+    margin-top: 15px;
 }
 
 @keyframes glowPulse {
